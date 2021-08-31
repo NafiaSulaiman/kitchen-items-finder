@@ -5,7 +5,7 @@ import Shelf from './components/shelf';
 function App() {
   return (
     <div className="App">
-     <header>My kitchen</header>
+     <header>My kitchen's</header>
      <Shelf></Shelf>
     </div>
   );
