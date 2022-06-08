@@ -1,6 +1,7 @@
 import React from "react";
+import { Temperatures } from "../lib/interfaces";
 function Shelf() {
-  const [shelfRespnse, setShelf] = React.useState();
+  const [shelfRespnse, setShelf] = React.useState<Temperatures|undefined>();
   const getFact = React.useCallback(() => {
     fetch("https://datausa.io/api/data?drilldowns=Nation&measures=Population")
       .then(response => response.json())
@@ -11,7 +12,7 @@ function Shelf() {
       .catch(error => {
         console.log(error);
       });
-  });
+  },[]);
 
   if (shelfRespnse)
     return (
@@ -21,11 +22,12 @@ function Shelf() {
             <div>
               {itm.Nation}
               {itm.Year}
+        {itm["ID Nation"]}
             </div>
           ))}
         <button
           onClick={() => {
-            setShelf();
+            setShelf({data:[],source:[]});
           }}
         >
           un set
